@@ -1,6 +1,6 @@
 {
   "name": "@symlinkde/eco-os-pk-parse",
-  "version": "0.0.22",
+  "version": "0.0.24",
   "description": "Package containing all parse functions.",
   "main": "lib/index.js",
   "license": "Apache-2.0",

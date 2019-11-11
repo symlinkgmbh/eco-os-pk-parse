@@ -41,7 +41,7 @@ export class IPParser {
     return IP.isIp(address);
   }
 
-  public static extractIpV4Address(address: string | string[]): string | null {
+  public static extractIpV4Address(address: string | string[]): string | string[] | null {
     if (address === undefined || address === null || this.isIpLocalhost(address)) {
       return null;
     }
@@ -57,7 +57,11 @@ export class IPParser {
     return false;
   }
 
-  private static extractIp(address: string | string[]): string {
+  private static extractIp(address: string | string[]): string | string[] {
+    if (address.includes(",") && !Array.isArray(address)) {
+      return address.split(",").map((entry: string) => entry.replace(/\s/g, "").trim());
+    }
+
     if (Array.isArray(address) && address.length > 0) {
       if (address.includes("::ffff:")) {
         address = address[0].split(":").reverse()[0];
